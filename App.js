@@ -1,12 +1,25 @@
 import "react-native-gesture-handler";
 
+import React, { Component } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-const Stack = createStackNavigator;
+//const Stack = createStackNavigator;
+class App extends Component {
+  render() {
+    return (
+      <SafeAreaView>
+        <Text>Testing</Text>
+      </SafeAreaView>
+    );
+  }
+}
 
+export default App;
+/*
 export default function App() {
   return (
     <NavigationContainer>
@@ -28,3 +41,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+*/
