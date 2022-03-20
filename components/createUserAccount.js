@@ -15,6 +15,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
+const localHost = "localhost";
+const phoneIP = "192.168.1.24";
+
 const storeData = async (value) => {
   try {
     await AsyncStorage.setItem("@storage_Key", value);
@@ -62,7 +65,7 @@ class CreateUserAccount extends Component {
     //console.log(to_send);
     //console.log(JSON.stringify(to_send))
 
-    return fetch("http://192.168.1.24:3333/api/1.0.0/user", {
+    return fetch("http://" + phoneIP + ":3333/api/1.0.0/user", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

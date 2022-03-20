@@ -6,16 +6,22 @@ import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import CreateUserAccount from "./components/createUserAccount.js";
+import CreateUserAccount from "./components/CreateUserAccount.js";
+import { StackRouter } from "react-navigation";
 
-//const Stack = createStackNavigator;
+const Stack = createStackNavigator();
+
 class App extends Component {
   render() {
     return (
-      <SafeAreaView>
-        <Text>Testing</Text>
-        <CreateUserAccount></CreateUserAccount>
-      </SafeAreaView>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Create user account"
+            component={CreateUserAccount}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   }
 }
