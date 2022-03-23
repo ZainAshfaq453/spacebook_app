@@ -4,12 +4,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 // Screens
-import UserScreen from "../UserCreationScreen";
+import CreateUserScreen from "../UserCreationScreen";
 // import DetailsScreen from "./screens/DetailsScreen";
 // import SettingsScreen from "./screens/SettingsScreen";
 
 //Screen names
-const userName = "User Screen";
+const userName = "Create User";
 // const detailsName = "Details";
 // const settingsName = "Settings";
 
@@ -26,7 +26,7 @@ function MainContainer() {
             let rn = route.name;
 
             if (rn === userName) {
-              iconName = focused ? "home" : "home-outline";
+              iconName = focused ? "arrow-up-circle" : "home-outline";
             } // else if (rn === detailsName) {
             //   iconName = focused ? "list" : "list-outline";
             // } else if (rn === settingsName) {
@@ -40,11 +40,11 @@ function MainContainer() {
         tabBarOptions={{
           activeTintColor: "tomato",
           inactiveTintColor: "grey",
-          labelStyle: { paddingBottom: 10, fontSize: 10 },
+          labelStyle: { paddingBottom: 10, fontSize: 20 },
           style: { padding: 10, height: 70 },
         }}
       >
-        <Tab.Screen name={userName} component={UserScreen} />
+        <Tab.Screen name={userName} component={CreateUserScreen} />
         {/* <Tab.Screen name={detailsName} component={DetailsScreen} />
         <Tab.Screen name={settingsName} component={SettingsScreen} /> */}
       </Tab.Navigator>
