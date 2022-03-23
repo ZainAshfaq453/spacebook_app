@@ -12,23 +12,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { NavigationContainer } from "@react-navigation/native";
+
 import { createStackNavigator } from "@react-navigation/stack";
-
-/*
-class loginUserAccount extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      //isLoading: true,
-
-      email: "",
-      password: "",
-      token: "",
-    };
-  }
-}
-
-export default loginUserAccount;
-*/
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";

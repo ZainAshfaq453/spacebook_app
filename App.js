@@ -2,30 +2,27 @@ import "react-native-gesture-handler";
 
 import React, { Component } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableHighlight,
+  Button,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import { StackRouter } from "react-navigation";
+// import { Alert } from "react-native-web";
+
 import CreateUserAccount from "./components/CreateUserAccount.js";
-import { StackRouter } from "react-navigation";
+//import HomeScreen from "./screens/StackNavigator.js";
+import NavigationTab from "./components/NavigationTab";
+import MainContainer from "./screens/navigation/MainContainer";
 
-const Stack = createStackNavigator();
-
-class App extends Component {
-  render() {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Create user account"
-            component={CreateUserAccount}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
+function App() {
+  return <MainContainer> </MainContainer>;
 }
-
 export default App;
 /*
 export default function App() {

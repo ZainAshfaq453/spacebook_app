@@ -65,7 +65,7 @@ class CreateUserAccount extends Component {
     //console.log(to_send);
     //console.log(JSON.stringify(to_send))
 
-    return fetch("http://" + phoneIP + ":3333/api/1.0.0/user", {
+    return fetch("http://" + localHost + ":3333/api/1.0.0/user", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -120,4 +120,15 @@ class CreateUserAccount extends Component {
   }
 }
 
-export default CreateUserAccount;
+class Screen extends Component {
+  render() {
+    const { navigation } = this.props;
+    return (
+      <View>
+        <CreateUserAccount navigation={navigation}></CreateUserAccount>
+      </View>
+    );
+  }
+}
+
+export default Screen;
