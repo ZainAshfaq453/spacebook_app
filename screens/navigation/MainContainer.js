@@ -5,12 +5,12 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 // Screens
 import CreateUserScreen from "../UserCreationScreen";
-// import DetailsScreen from "./screens/DetailsScreen";
+import LoginUserScreen from "../LoginUserAccount";
 // import SettingsScreen from "./screens/SettingsScreen";
 
 //Screen names
 const userName = "Create User";
-// const detailsName = "Details";
+const loginName = "Login User";
 // const settingsName = "Settings";
 
 const Tab = createBottomTabNavigator();
@@ -27,9 +27,9 @@ function MainContainer() {
 
             if (rn === userName) {
               iconName = focused ? "arrow-up-circle" : "home-outline";
-            } // else if (rn === detailsName) {
-            //   iconName = focused ? "list" : "list-outline";
-            // } else if (rn === settingsName) {
+            } else if (rn === loginName) {
+              iconName = focused ? "list" : "list-outline";
+            } // else if (rn === settingsName) {
             //   iconName = focused ? "settings" : "settings-outline";
             // }
 
@@ -40,11 +40,12 @@ function MainContainer() {
         tabBarOptions={{
           activeTintColor: "tomato",
           inactiveTintColor: "grey",
-          labelStyle: { paddingBottom: 10, fontSize: 20 },
-          style: { padding: 10, height: 70 },
+          labelStyle: { paddingBottom: 4, fontSize: 15 },
+          style: { padding: 10, height: 90 },
         }}
       >
         <Tab.Screen name={userName} component={CreateUserScreen} />
+        <Tab.Screen name={loginName} component={LoginUserScreen} />
         {/* <Tab.Screen name={detailsName} component={DetailsScreen} />
         <Tab.Screen name={settingsName} component={SettingsScreen} /> */}
       </Tab.Navigator>

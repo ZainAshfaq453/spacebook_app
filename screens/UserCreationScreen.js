@@ -27,16 +27,6 @@ const storeData = async (value) => {
   console.log(value);
 };
 
-const getData = async () => {
-  try {
-    const value = await AsyncStorage.getItem("@storage_Key");
-    if (value !== null) {
-      // value previously stored
-    }
-  } catch (e) {
-    // error reading value
-  }
-};
 class CreateUserAccount extends Component {
   constructor(props) {
     super(props);
@@ -50,10 +40,10 @@ class CreateUserAccount extends Component {
       password: "",
     };
   }
-  buttonPress = () => {
-    console.log("button as been pressed");
-    Alert.alert("button has been pressed");
-  };
+  // buttonPress = () => {
+  //   console.log("button as been pressed");
+  //   Alert.alert("button has been pressed");
+  // };
   addUser = () => {
     Alert.alert("button press");
     let to_send = {
@@ -111,10 +101,10 @@ class CreateUserAccount extends Component {
         />
         <Button title="Add" onPress={this.addUser} />
 
-        <Text>{this.state.first_name}</Text>
+        {/* <Text>{this.state.first_name}</Text>
         <Text>{this.state.last_name}</Text>
         <Text>{this.state.email}</Text>
-        <Text>{this.state.password}</Text>
+      <Text>{this.state.password}</Text> */}
       </SafeAreaView>
     );
   }
@@ -132,3 +122,14 @@ class Screen extends Component {
 }
 
 export default Screen;
+
+// const getData = async () => {
+//   try {
+//     const value = await AsyncStorage.getItem("@storage_Key");
+//     if (value !== null) {
+//       // value previously stored
+//     }
+//   } catch (e) {
+//     // error reading value
+//   }
+// };

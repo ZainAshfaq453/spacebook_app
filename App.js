@@ -17,7 +17,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 //import CreateUserAccount from "./components/CreateUserAccount.js";
 //import HomeScreen from "./screens/StackNavigator.js";
-import NavigationTab from "./components/NavigationTab";
+
 import MainContainer from "./screens/navigation/MainContainer";
 
 function App() {
