@@ -34,14 +34,12 @@ class UserLogInScreen extends Component {
       }),
     })
       .then((response) => {
-        if (response.status === 200 || response.status === 201) {
+        if (response.status === 201 || response.status === 200) {
           return response.json();
-        } else if (response.status === 400) {
-          throw "Invalid email or password, please try again!";
-        } else if (response.status === 500) {
-          throw "Server error!";
         } else {
-          throw "Error, please try again!";
+          Alert.alert(
+            "Error: Refer to Spacebook server command line for more details "
+          );
         }
       })
       .then(async (responseJSON) => {
@@ -75,20 +73,19 @@ class UserLogInScreen extends Component {
     return (
       <View>
         <TextInput
-          placeholder="E-Mail"
+          placeholder="Enter E-Mail"
           onChangeText={(email) => this.setState({ email: email })}
         />
         <TextInput
-          placeholder="Password"
+          placeholder="Enter Password"
           onChangeText={(password) => this.setState({ password: password })}
           secureTextEntry={true}
         />
         <Button
           title="Login"
           login={this.userAccountLogin}
-          onPress={this.login}
+          onPress={this.userAccountLogin}
         />
-        <Text>Not Got An Account? Sign Up Above!</Text>
       </View>
     );
   }
