@@ -1,15 +1,10 @@
 import React, { Component, useState, useContext } from "react";
 
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  StyleSheet,
-  Button,
-} from "react-native";
+import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 
 import AsyncStorge from "@react-native-async-storage/async-storage";
+const localHost = "localhost";
+const phoneIP = "192.168.1.24";
 
 class UserLogInScreen extends Component {
   constructor(props) {
@@ -23,7 +18,7 @@ class UserLogInScreen extends Component {
 
   userAccountLogin = async () => {
     console.log("login function called");
-    return fetch("http://192.168.1.24:3333/api/1.0.0/login", {
+    return fetch("http://" + localHost + ":3333/api/1.0.0/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
