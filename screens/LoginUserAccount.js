@@ -32,7 +32,7 @@ class UserLogInScreen extends Component {
         if (response.status === 201 || response.status === 200) {
           return response.json();
         } else {
-          Alert.alert(
+          alert(
             "Error: Refer to Spacebook server command line for more details "
           );
         }
