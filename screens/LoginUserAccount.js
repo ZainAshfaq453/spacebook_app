@@ -53,13 +53,13 @@ class UserLogInScreen extends Component {
           }
         );
 
-        //changes vlaues in MainContainer constructor once auth has been successful
+        //changes values in MainContainer constructor once auth has been successful
 
         this.props.accountID(responseJSON.id);
         this.props.userSignedIn(true);
 
         test = this.props.accountID(responseJSON.id);
-        console.log("Login page info" + { test });
+        // console.log("Login page info" + { test });
       })
       .catch((error) => {
         console.log(error);

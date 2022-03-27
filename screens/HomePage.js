@@ -65,6 +65,37 @@ class HomePage extends Component {
         console.log(test);
       });
   };
+  accountDetailsUpdate = async () => {
+    const accountID = await AsyncStorage.getItem("@id");
+    const token = await AsyncStorage.getItem("@session_token");
+    let userDetails = {
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      email: this.state.email,
+      password: this.state.password,
+    };
+    return fetch("http://" + localHost + ":3333/api/1.0.0/user/" + accountID, {
+      method: "PATCH",
+      headers: {
+        "content-Type": "application/json",
+        "X-Authorization": token,
+      },
+      body: JSON.stringify(userDetails),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("User Account details have been updated");
+        } else {
+          alert(
+            "Error: Refer to Spacebook server command line for more details "
+          );
+        }
+      })
+      .catch((test) => {
+        console.log(test);
+      });
+  };
+
   render() {
     return (
       <SafeAreaView>
@@ -89,6 +120,10 @@ class HomePage extends Component {
           onChangeText={(password) => this.setState({ password })}
           value={this.state.password}
           //secureTextEntry={true}
+        />
+        <Button
+          title="Change account details"
+          onPress={() => this.accountDetailsUpdate()}
         />
       </SafeAreaView>
     );
