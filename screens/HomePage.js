@@ -25,7 +25,7 @@ class HomePage extends Component {
     super(props);
     this.state = {
       loading: true,
-      post: "",
+      userPost: "",
       first_name: "",
       last_name: "",
       email: "",
@@ -165,7 +165,7 @@ class HomePage extends Component {
           "X-Authorization": token,
         },
         body: JSON.stringify({
-          text: this.state.post,
+          text: this.state.userPost,
         }),
       }
     )
@@ -240,34 +240,47 @@ class HomePage extends Component {
           title="Change account details"
           onPress={() => this.accountDetailsUpdate()}
         />
+        <Button
+          title="testing"
+          onPress={() => alert("You have clicked test button")}
+        />
         <TextInput
           multiline={true}
-          numberOfLines={10}
+          numberOfLines={5}
           placeholder="Create a new post"
           style={styles.postBox}
           ref={(val) => {
-            this.post = val;
+            this.userPost = val;
           }}
-          onChangeText={(input) => this.setState({ input })}
-          value={this.state.post}
+          onChangeText={(userPost) => this.setState({ userPost })}
+          value={this.state.userPost}
+        />
+        <Button
+          title="Submit your post"
+          onPress={() => this.accountPost(this.state.accountID)}
         />
 
-        <TouchableOpacity
+        <Text>Sign Ouaaat</Text>
+        <Button
+          title="logout"
+          onPress={() => {
+            this.logout();
+          }}
+        />
+        {/* <TouchableOpacity
           Title="Log Out"
           onPress={() => {
             this.logout();
           }}
-        >
-          <Text>Sign Out</Text>
-        </TouchableOpacity>
+        ></TouchableOpacity> */}
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => {
             this.accountPost(this.state.accountID);
           }}
-        >
-          <Text>Post</Text>
-        </TouchableOpacity>
+        > */}
+        <Text>Post</Text>
+        {/* </TouchableOpacity> */}
       </SafeAreaView>
     );
   }
