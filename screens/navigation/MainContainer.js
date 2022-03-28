@@ -21,11 +21,13 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import CreateUserScreen from "../UserCreationScreen";
 import LoginUserScreen from "../LoginUserAccount";
 import HomeScreen from "../HomePage.js";
+import PostPage from "../PostPage.js";
 // import SettingsScreen from "./screens/SettingsScreen";
 
 const userName = "Create User";
 const loginName = "Login User";
 const homeName = "Home Page";
+const postName = "Post Page";
 // const settingsName = "Settings";
 
 const Tab = createBottomTabNavigator();
@@ -65,6 +67,8 @@ class MainContainer extends Component {
 
                 if (rn === homeName) {
                   iconName = focused ? "home" : "home-outline";
+                } else if (rn === postName) {
+                  iconName = focused ? "book" : "book-outline";
                 }
 
                 // You can return any component that you like here!
@@ -88,6 +92,19 @@ class MainContainer extends Component {
                   userSignedIn={this.userSignedIn}
                 />
               )}
+
+              // component={HomeScreen}
+            />
+            <Tab.Screen
+              name={postName}
+              children={(props) => (
+                <PostPage
+                  {...props}
+                  accountID={this.accountID}
+                  accountInfo={this.state}
+                />
+              )}
+
               // component={HomeScreen}
             />
           </Tab.Navigator>

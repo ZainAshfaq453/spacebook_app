@@ -245,10 +245,10 @@ class HomePage extends Component {
           numberOfLines={10}
           placeholder="Create a new post"
           style={styles.postBox}
-          ref={(text) => {
-            this.post = text;
+          ref={(val) => {
+            this.post = val;
           }}
-          onChangeText={(post) => this.setState({ post })}
+          onChangeText={(input) => this.setState({ input })}
           value={this.state.post}
         />
 
