@@ -10,6 +10,7 @@ class UserLogInScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      test: "",
       token: "",
       email: "",
       password: "",
@@ -58,8 +59,7 @@ class UserLogInScreen extends Component {
         this.props.accountID(responseJSON.id);
         this.props.userSignedIn(true);
 
-        test = this.props.accountID(responseJSON.id);
-        // console.log("Login page info" + { test });
+        const test = this.props.accountID(responseJSON.id);
       })
       .catch((error) => {
         console.log(error);

@@ -12,6 +12,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { BottomTabBarHeightContext } from "@react-navigation/bottom-tabs";
 import { PropTypes } from "react";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -37,7 +38,6 @@ class MainContainer extends Component {
       accountID: 0,
       // Always set at false when starting
       userSignedIn: false,
-      test: "",
     };
   }
   accountID = (id) => {
@@ -49,7 +49,6 @@ class MainContainer extends Component {
     this.setState({
       userSignedIn: bool,
     });
-    console.log("setLoggedIn fucntion value:" + { isLoggedIn });
   };
 
   render() {
@@ -76,7 +75,7 @@ class MainContainer extends Component {
               activeTintColor: "red",
               inactiveTintColor: "grey",
               labelStyle: { paddingBottom: 4, fontSize: 15 },
-              style: { padding: 10, height: 90 },
+              style: { Top: 10, height: 200 },
             }}
           >
             <Tab.Screen
@@ -86,6 +85,7 @@ class MainContainer extends Component {
                   {...props}
                   accountID={this.accountID}
                   accountInfo={this.state}
+                  userSignedIn={this.userSignedIn}
                 />
               )}
               // component={HomeScreen}
