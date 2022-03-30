@@ -25,6 +25,7 @@ class VisiblePosts extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      postMessage: "",
       accountID: 0,
       first_name: "",
       last_name: "",
@@ -59,7 +60,8 @@ class VisiblePosts extends Component {
     const token = await AsyncStorage.getItem("@session_token");
     const accountID = await AsyncStorage.getItem("@id");
 
-    const link = "http://10.0.2.2:3333/api/1.0.0/user/" + accountID + "/post";
+    const link =
+      "http://" + localHost + ":3333/api/1.0.0/user/" + accountID + "/post";
     return fetch(link, {
       headers: {
         "X-Authorization": token,
@@ -123,7 +125,7 @@ class VisiblePosts extends Component {
       .catch((error) => console.log(error));
   };
   //DELETE user post
-  deletePost = async (userID, postID) => {
+  deleteSelectedPost = async (userID, postID) => {
     const token = await AsyncStorage.getItem("@session_token");
     const accountID = await AsyncStorage.getItem("@id");
 
@@ -160,6 +162,50 @@ class VisiblePosts extends Component {
         console.log(error);
       });
   };
+  // PATCH user post
+  updateAccountPost = async (postID, msg) => {
+    const token = await AsyncStorage.getItem("@session_token");
+    const accountID = await AsyncStorage.getItem("@id");
+    var url =
+      "http://" +
+      localHost +
+      ":3333/api/1.0.0/user/" +
+      accountID +
+      "/post/" +
+      postID;
+    return fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Authorization": token,
+      },
+      body: JSON.stringify({
+        text: msg,
+      }),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          return "OK!";
+        } else if (response.status === 400) {
+          console.log("Bad Request");
+        } else if (response.status === 401) {
+          console.log("Unauthorised");
+        } else if (response.status === 403) {
+          console.log("Forbidden");
+        } else if (response.status === 404) {
+          console.log("Not Found");
+        } else if (response.status === 500) {
+          throw "Server Error!";
+        } else {
+          throw "Please try again!";
+        }
+      })
+      .then((r) => {
+        console.log(r);
+        this.getPosts();
+      })
+      .catch((error) => console.log(error));
+  };
 
   render() {
     return (
@@ -170,11 +216,15 @@ class VisiblePosts extends Component {
           renderItem={({ item }) => (
             <View>
               <Text>
-                ID: {item.author.user_id}, Name: {item.author.first_name}, Text:{" "}
-                {item.text}
+                Name: {item.author.first_name} ,Post ID {item.post_id},
               </Text>
+              <Text>Text:{item.text}</Text>
+              <Text>
+                User Account ID: {item.author.user_id}, Likes: {item.numLikes}
+              </Text>
+              <Text>Time Stamp:{item.timestamp}</Text>
               <Button
-                title="View"
+                title="Refresh Posts"
                 onPress={() =>
                   this.getSelectedtUserPosts(item.author.user_id, item.post_id)
                 }
@@ -182,7 +232,24 @@ class VisiblePosts extends Component {
               <Button
                 title="Delete Post Above"
                 onPress={() =>
-                  this.deletePost(item.author.user_id, item.post_id)
+                  this.deleteSelectedPost(item.author.user_id, item.post_id)
+                }
+              />
+              <TextInput
+                multiline={true}
+                numberOfLines={5}
+                placeholder="Edit Post"
+                style={styles.multiline}
+                onChangeText={(text) => {
+                  this.setState({ postMessage: text });
+                }}
+                value={this.state.postMessage}
+              />
+
+              <Button
+                title="update post above"
+                onPress={() =>
+                  this.updateAccountPost(item.post_id, this.state.postMessage)
                 }
               />
             </View>
@@ -192,4 +259,12 @@ class VisiblePosts extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  multiline: {
+    borderWidth: 0.5,
+    borderColor: "green",
+    padding: 2,
+    marginVertical: 5,
+  },
+});
 export default VisiblePosts;

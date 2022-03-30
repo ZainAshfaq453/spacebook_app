@@ -56,14 +56,13 @@ class HomePage extends Component {
       userSignedIn: bool,
     });
   };
-  getImage = async () => {
+  getAccountImage = async () => {
+    const accountID = await AsyncStorage.getItem("@id");
     const token = await AsyncStorage.getItem("@session_token");
     console.log("This is userAccountImage token" + token);
     console.log("This is state token" + this.state.token);
     return fetch(
-      "http://127.0.0.1:3333/api/1.0.0/user/" +
-        this.props.accountInfo.userSignedIn +
-        "/photo",
+      "http://127.0.0.1:3333/api/1.0.0/user/" + accountID + "/photo",
       {
         method: "GET",
         headers: { "X-Authorization": this.state.token },
@@ -71,9 +70,10 @@ class HomePage extends Component {
     )
       .then((response) => {
         if (response.status === 200) {
+          console.log("Image has been loaded");
           return response.blob();
         } else {
-          alert();
+          alert("Image not loaded");
         }
       })
       .then((blob) =>
@@ -81,10 +81,11 @@ class HomePage extends Component {
       )
       .catch((error) => console.log(error));
   };
+
   async componentDidMount() {
     await this.getAccountID();
     await this.getAccountToken();
-    await this.getImage();
+    await this.getAccountImage();
     await this.accountDetails();
   }
   //Get user information
@@ -154,8 +155,8 @@ class HomePage extends Component {
   accountPost = async () => {
     const token = await AsyncStorage.getItem("@session_token");
     const accountID = await AsyncStorage.getItem("@id");
-    console.log("Justin " + token);
-    console.log("Justin " + accountID);
+    console.log("Steve " + token);
+    console.log("Steve " + accountID);
     return fetch(
       "http://localhost:3333/api/1.0.0/user/" + accountID + "/post",
       {
@@ -183,7 +184,7 @@ class HomePage extends Component {
       .catch((error) => console.log(error));
   };
   // logout endpint
-  logout = async () => {
+  userAccountLogout = async () => {
     const tok = AsyncStorage.getItem("@session_token");
     console.log(tok);
     await AsyncStorage.getItem("@session_token")
@@ -212,8 +213,18 @@ class HomePage extends Component {
     return (
       <SafeAreaView>
         <View>
-          <Image source={{ uri: this.state.accountImage }} />
+          <Image
+            style={{
+              // flex: 1,
+              resizeMode: "contain",
+              height: 50,
+              width: 50,
+            }}
+            source={{ uri: this.state.accountImage }}
+          />
         </View>
+        <Button title="Change account profile pic" />
+
         <Text>Change User Account Details</Text>
         <TextInput
           placeholder="First Name"
@@ -241,7 +252,7 @@ class HomePage extends Component {
           onPress={() => this.accountDetailsUpdate()}
         />
         <Button
-          title="testing"
+          title="testing alert"
           onPress={() => alert("You have clicked test button")}
         />
         <TextInput
@@ -264,21 +275,10 @@ class HomePage extends Component {
         <Button
           title="logout"
           onPress={() => {
-            this.logout();
+            this.userAccountLogout();
           }}
         />
-        {/* <TouchableOpacity
-          Title="Log Out"
-          onPress={() => {
-            this.logout();
-          }}
-        ></TouchableOpacity> */}
 
-        {/* <TouchableOpacity
-          onPress={() => {
-            this.accountPost(this.state.accountID);
-          }}
-        > */}
         <Text>Post</Text>
         {/* </TouchableOpacity> */}
       </SafeAreaView>

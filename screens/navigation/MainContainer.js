@@ -22,12 +22,14 @@ import CreateUserScreen from "../UserCreationScreen";
 import LoginUserScreen from "../LoginUserAccount";
 import HomeScreen from "../HomePage.js";
 import PostPage from "../PostPage.js";
+import FriendPage from "../FriendPage.js";
 // import SettingsScreen from "./screens/SettingsScreen";
 
 const userName = "Create User";
 const loginName = "Login User";
 const homeName = "Home Page";
 const postName = "Post Page";
+const friendName = "Friend Page";
 // const settingsName = "Settings";
 
 const Tab = createBottomTabNavigator();
@@ -69,6 +71,8 @@ class MainContainer extends Component {
                   iconName = focused ? "home" : "home-outline";
                 } else if (rn === postName) {
                   iconName = focused ? "book" : "book-outline";
+                } else if (rn === friendName) {
+                  iconName = focused ? "user-friends" : "user-friends-outline";
                 }
 
                 // You can return any component that you like here!
@@ -96,6 +100,20 @@ class MainContainer extends Component {
               // component={HomeScreen}
             />
             <Tab.Screen
+              name={friendName}
+              children={(props) => (
+                <FriendPage
+                  {...props}
+                  accountID={this.accountID}
+                  accountInfo={this.state}
+                  userSignedIn={this.userSignedIn}
+                />
+              )}
+
+              // component={HomeScreen}
+            />
+
+            <Tab.Screen
               name={postName}
               children={(props) => (
                 <PostPage
@@ -117,7 +135,9 @@ class MainContainer extends Component {
                 let rn = route.name;
 
                 if (rn === userName) {
-                  iconName = focused ? "arrow-up-circle" : "home-outline";
+                  iconName = focused
+                    ? "arrow-up-circle"
+                    : "arrow-up-circle-outline";
                 } else if (rn === loginName) {
                   iconName = focused ? "list" : "list-outline";
                 } // else if (rn === settingsName) {
