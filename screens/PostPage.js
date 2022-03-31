@@ -185,9 +185,9 @@ class VisiblePosts extends Component {
     })
       .then((response) => {
         if (response.status === 200) {
-          alert("Post has been made")
-        }  else {
-          alert("ERROR: Check spacebook api command line for more details" )
+          alert("Post has been made");
+        } else {
+          alert("ERROR: Check spacebook api command line for more details");
         }
       })
       .then((resp) => {
@@ -208,7 +208,7 @@ class VisiblePosts extends Component {
               <Text>
                 Name: {item.author.first_name} ,Post ID {item.post_id},
               </Text>
-              <Text>Text:{item.text}</Text>
+              <Text>Text: {item.text}</Text>
               <Text>
                 User Account ID: {item.author.user_id}, Likes: {item.numLikes}
               </Text>
@@ -221,6 +221,7 @@ class VisiblePosts extends Component {
               />
               <Button
                 title="Delete Post Above"
+                color="red"
                 onPress={() =>
                   this.deleteSelectedPost(item.author.user_id, item.post_id)
                 }
@@ -238,6 +239,7 @@ class VisiblePosts extends Component {
 
               <Button
                 title="update post above"
+                color="green"
                 onPress={() =>
                   this.updateAccountPost(item.post_id, this.state.postMessage)
                 }

@@ -74,27 +74,31 @@ class CreateUserAccount extends Component {
         <Text>Create A User Account</Text>
 
         <TextInput
+          style={styles.box}
           placeholder="Enter first name"
           onChangeText={(first_name) => this.setState({ first_name })}
           value={this.state.first_name}
         />
         <TextInput
+          style={styles.box}
           placeholder="Enter surname"
           onChangeText={(last_name) => this.setState({ last_name })}
           value={this.state.last_name}
         />
         <TextInput
+          style={styles.box}
           placeholder="Enter email"
           onChangeText={(email) => this.setState({ email })}
           value={this.state.email}
         />
         <TextInput
+          style={styles.box}
           placeholder="Enter password."
           secureTextEntry={true}
           onChangeText={(password) => this.setState({ password })}
           value={this.state.password}
         />
-        <Button title="Add" onPress={this.addUser} />
+        <Button title="Add" onPress={this.addUser} color="green" />
 
         {/* <Text>{this.state.first_name}</Text>
         <Text>{this.state.last_name}</Text>
@@ -114,5 +118,8 @@ class Screen extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  box: { borderWidth: 0.75, padding: 5, marginBottom: 2 },
+});
 
 export default Screen;

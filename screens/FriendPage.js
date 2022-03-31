@@ -15,7 +15,7 @@ import {
 import { FlatList, Switch } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const getASyncData = async (itemName) => {
+const asyncGetData = async (itemName) => {
   try {
     const polo = await AsyncStorage.getItem(itemName);
     if (polo !== null) {
@@ -23,7 +23,6 @@ const getASyncData = async (itemName) => {
     }
   } catch (a) {}
 };
-
 class userFriendPage extends Component {
   constructor(props) {
     super(props);
@@ -33,17 +32,17 @@ class userFriendPage extends Component {
       userFriendID: 0,
       friendArray: [],
       arrayOfFriendRequests: [],
-      arraySearch: [],
-      textSearch: "",
       search_in: "all",
+      textSearch: "",
+      arraySearch: [],
       searchLimt: 0,
       offset: 0,
     };
   }
 
   componentDidMount() {
-    console.log("component mounted");
-    getASyncData("@id")
+    console.log("componentDidMount function called");
+    asyncGetData("@id")
       .then((tok) => this.setState({ userID: parseInt(tok) }))
       .then(() => {
         this.getUserFriendList();
@@ -197,7 +196,7 @@ class userFriendPage extends Component {
         <Text>Friends or All</Text>
         <TextInput
           style={styles.box}
-          placeholder="Please enter number here"
+          placeholder="Please 'friends'or 'all'"
           onChangeText={(search_in) => this.setState({ search_in })}
         />
         <Text>Max number of searches</Text>

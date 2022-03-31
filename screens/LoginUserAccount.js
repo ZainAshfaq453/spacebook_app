@@ -71,16 +71,19 @@ class UserLogInScreen extends Component {
     return (
       <View>
         <TextInput
+          style={styles.box}
           placeholder="Enter E-Mail"
           onChangeText={(email) => this.setState({ email: email })}
         />
         <TextInput
+          style={styles.box}
           placeholder="Enter Password"
           onChangeText={(password) => this.setState({ password: password })}
           secureTextEntry={true}
         />
         <Button
           title="Login"
+          color="green"
           login={this.userAccountLogin}
           onPress={this.userAccountLogin}
         />
@@ -88,5 +91,8 @@ class UserLogInScreen extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  box: { borderWidth: 0.75, padding: 5, marginBottom: 2 },
+});
 
 export default UserLogInScreen;
