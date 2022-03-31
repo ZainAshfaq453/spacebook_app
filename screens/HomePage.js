@@ -51,11 +51,7 @@ class HomePage extends Component {
       .then((data) => this.setState({ token: data }))
       .catch((error) => console.log(error));
   };
-  userSignedIn = (bool) => {
-    this.setState({
-      userSignedIn: bool,
-    });
-  };
+
   getAccountImage = async () => {
     const accountID = await AsyncStorage.getItem("@id");
     const token = await AsyncStorage.getItem("@session_token");
@@ -212,18 +208,16 @@ class HomePage extends Component {
   render() {
     return (
       <SafeAreaView>
-        <View>
+        <View style={styles.viewStyle}>
           <Image
             style={{
-              // flex: 1,
-              resizeMode: "contain",
-              height: 50,
-              width: 50,
+              // resizeMode: "contain",
+              height: 96,
+              width: 96,
             }}
             source={{ uri: this.state.accountImage }}
           />
         </View>
-        <Button title="Change account profile pic" />
 
         <Text>Change User Account Details</Text>
         <TextInput
@@ -251,10 +245,7 @@ class HomePage extends Component {
           title="Change account details"
           onPress={() => this.accountDetailsUpdate()}
         />
-        <Button
-          title="testing alert"
-          onPress={() => alert("You have clicked test button")}
-        />
+
         <TextInput
           multiline={true}
           numberOfLines={5}
@@ -286,6 +277,8 @@ class HomePage extends Component {
   }
 }
 const styles = StyleSheet.create({
+  
+
   postBox: {
     padding: 10,
     borderWidth: 3,

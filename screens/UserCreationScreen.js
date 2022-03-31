@@ -21,9 +21,7 @@ const phoneIP = "192.168.1.24";
 const storeData = async (value) => {
   try {
     await AsyncStorage.setItem("@storage_Key", value);
-  } catch (e) {
-    // saving error
-  }
+  } catch (e) {}
   console.log(value);
 };
 
@@ -45,15 +43,12 @@ class CreateUserAccount extends Component {
   //   Alert.alert("button has been pressed");
   // };
   addUser = () => {
-    Alert.alert("button press");
     let to_send = {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       email: this.state.email,
       password: this.state.password,
     };
-    //console.log(to_send);
-    //console.log(JSON.stringify(to_send))
 
     return fetch("http://" + localHost + ":3333/api/1.0.0/user", {
       method: "post",
@@ -67,7 +62,7 @@ class CreateUserAccount extends Component {
         storeData(responseJson.token);
       })
       .then((response) => {
-        Alert.alert("User account added");
+        console.log(response);
       })
       .catch((error) => {
         console.log(error);
@@ -112,24 +107,12 @@ class CreateUserAccount extends Component {
 
 class Screen extends Component {
   render() {
-    const { navigation } = this.props;
     return (
       <View>
-        <CreateUserAccount navigation={navigation}></CreateUserAccount>
+        <CreateUserAccount></CreateUserAccount>
       </View>
     );
   }
 }
 
 export default Screen;
-
-// const getData = async () => {
-//   try {
-//     const value = await AsyncStorage.getItem("@storage_Key");
-//     if (value !== null) {
-//       // value previously stored
-//     }
-//   } catch (e) {
-//     // error reading value
-//   }
-// };

@@ -41,7 +41,7 @@ class MainContainer extends Component {
     this.state = {
       accountID: 0,
       // Always set at false when starting
-      userSignedIn: false,
+      userSignedIn: true,
     };
   }
   accountID = (id) => {
@@ -96,8 +96,6 @@ class MainContainer extends Component {
                   userSignedIn={this.userSignedIn}
                 />
               )}
-
-              // component={HomeScreen}
             />
             <Tab.Screen
               name={friendName}
@@ -109,8 +107,6 @@ class MainContainer extends Component {
                   userSignedIn={this.userSignedIn}
                 />
               )}
-
-              // component={HomeScreen}
             />
 
             <Tab.Screen
@@ -122,8 +118,6 @@ class MainContainer extends Component {
                   accountInfo={this.state}
                 />
               )}
-
-              // component={HomeScreen}
             />
           </Tab.Navigator>
         ) : (
@@ -140,11 +134,7 @@ class MainContainer extends Component {
                     : "arrow-up-circle-outline";
                 } else if (rn === loginName) {
                   iconName = focused ? "list" : "list-outline";
-                } // else if (rn === settingsName) {
-                //   iconName = focused ? "settings" : "settings-outline";
-                // }
-
-                // You can return any component that you like here!
+                }
                 return <Ionicons name={iconName} size={size} color={color} />;
               },
             })}
@@ -170,7 +160,6 @@ class MainContainer extends Component {
           </Tab.Navigator>
         )}
       </NavigationContainer>
-      // Return bracket
     );
   }
 }

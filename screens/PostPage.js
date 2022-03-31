@@ -185,23 +185,13 @@ class VisiblePosts extends Component {
     })
       .then((response) => {
         if (response.status === 200) {
-          return "OK!";
-        } else if (response.status === 400) {
-          console.log("Bad Request");
-        } else if (response.status === 401) {
-          console.log("Unauthorised");
-        } else if (response.status === 403) {
-          console.log("Forbidden");
-        } else if (response.status === 404) {
-          console.log("Not Found");
-        } else if (response.status === 500) {
-          throw "Server Error!";
-        } else {
-          throw "Please try again!";
+          alert("Post has been made")
+        }  else {
+          alert("ERROR: Check spacebook api command line for more details" )
         }
       })
-      .then((r) => {
-        console.log(r);
+      .then((resp) => {
+        console.log(resp);
         this.getPosts();
       })
       .catch((error) => console.log(error));
