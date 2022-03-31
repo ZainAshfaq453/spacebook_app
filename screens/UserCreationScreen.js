@@ -94,7 +94,7 @@ class CreateUserAccount extends Component {
         <TextInput
           style={styles.box}
           placeholder="Enter password."
-          secureTextEntry={true}
+          // secureTextEntry={true}
           onChangeText={(password) => this.setState({ password })}
           value={this.state.password}
         />

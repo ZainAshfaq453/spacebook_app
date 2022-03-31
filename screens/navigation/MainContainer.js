@@ -41,7 +41,7 @@ class MainContainer extends Component {
     this.state = {
       accountID: 0,
       // Always set at false when starting
-      userSignedIn: false,
+      userSignedIn: true,
     };
   }
   accountID = (id) => {
@@ -70,9 +70,9 @@ class MainContainer extends Component {
                 if (rn === homeName) {
                   iconName = focused ? "home" : "home-outline";
                 } else if (rn === postName) {
-                  iconName = focused ? "book" : "book-outline";
+                  iconName = focused ? "add-circle" : "add-circle-outline";
                 } else if (rn === friendName) {
-                  iconName = focused ? "user-friends" : "user-friends-outline";
+                  iconName = focused ? "person-add" : "person-add-outline";
                 }
 
                 // You can return any component that you like here!
@@ -129,11 +129,9 @@ class MainContainer extends Component {
                 let rn = route.name;
 
                 if (rn === userName) {
-                  iconName = focused
-                    ? "arrow-up-circle"
-                    : "arrow-up-circle-outline";
+                  iconName = focused ? "create" : "create-outline";
                 } else if (rn === loginName) {
-                  iconName = focused ? "list" : "list-outline";
+                  iconName = focused ? "log-in" : "log-in-outline";
                 }
                 return <Ionicons name={iconName} size={size} color={color} />;
               },

@@ -1,6 +1,13 @@
 import React, { Component, useState, useContext } from "react";
 
-import { View, Text, TextInput, StyleSheet, Button } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Button,
+  SafeAreaView,
+} from "react-native";
 
 import AsyncStorge from "@react-native-async-storage/async-storage";
 const localHost = "localhost";
@@ -69,7 +76,7 @@ class UserLogInScreen extends Component {
   render() {
     console.log("login page has been reached");
     return (
-      <View>
+      <SafeAreaView>
         <TextInput
           style={styles.box}
           placeholder="Enter E-Mail"
@@ -87,7 +94,7 @@ class UserLogInScreen extends Component {
           login={this.userAccountLogin}
           onPress={this.userAccountLogin}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }

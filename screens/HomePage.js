@@ -269,16 +269,11 @@ class HomePage extends Component {
             this.userAccountLogout();
           }}
         />
-
-        <Text>Post</Text>
-        {/* </TouchableOpacity> */}
       </SafeAreaView>
     );
   }
 }
 const styles = StyleSheet.create({
-  
-
   postBox: {
     padding: 10,
     borderWidth: 3,
