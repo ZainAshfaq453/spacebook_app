@@ -1,6 +1,7 @@
 Created using EXPO client. Does not include spacebook server.
 
-HOW TO RUN: Download folder and type "NPM start" in command line 
+HOW TO RUN: I had to delete node modules due to their size. Run "NPM install". Type "NPM start" in command line 
+
 Endpoints implemented:
 
 User Management
