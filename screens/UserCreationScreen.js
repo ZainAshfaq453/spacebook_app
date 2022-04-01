@@ -14,6 +14,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import AsyncStorge from "@react-native-async-storage/async-storage";
 
 const localHost = "localhost";
 const phoneIP = "192.168.1.24";

@@ -41,7 +41,7 @@ class MainContainer extends Component {
     this.state = {
       accountID: 0,
       // Always set at false when starting
-      userSignedIn: true,
+      userSignedIn: false,
     };
   }
   accountID = (id) => {

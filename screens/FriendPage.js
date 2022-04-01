@@ -259,6 +259,7 @@ class userFriendPage extends Component {
                 </Text>
                 <Button
                   title="Accept Friend Request"
+                  color="green"
                   onPress={() => this.acceptFriendRequest(item.user_id)}
                 />
               </View>
