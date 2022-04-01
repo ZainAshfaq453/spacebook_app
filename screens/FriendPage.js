@@ -99,6 +99,7 @@ class userFriendPage extends Component {
       });
   };
 
+  // GET Search friends or all
   getSearchUsers = async () => {
     const token = await AsyncStorage.getItem("@session_token");
     const textSearch = this.state.textSearch;
@@ -186,83 +187,85 @@ class userFriendPage extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.border}>Search Spacebook users</Text>
-        <TextInput
-          style={styles.box}
-          placeholder="Search spacebook users here"
-          onChangeText={(textSearch) => this.setState({ textSearch })}
-        />
-        <Text>Friends or All</Text>
-        <TextInput
-          style={styles.box}
-          placeholder="Please 'friends'or 'all'"
-          onChangeText={(search_in) => this.setState({ search_in })}
-        />
-        <Text>Max number of searches</Text>
-        <TextInput
-          style={styles.box}
-          placeholder="Please enter number here"
-          onChangeText={(maxSearchLimit) => this.setState({ maxSearchLimit })}
-        />
-        <Text>number of offset item</Text>
-        <TextInput
-          style={styles.box}
-          placeholder="Please enter number here"
-          onChangeText={(offset) => this.setState({ offset })}
-        />
-        <Button onPress={() => this.getSearchUsers()} title="Find" />
-        <FlatList
-          data={this.state.arraySearch}
-          renderItem={({ item }) => (
-            <View>
-              <Text>
-                ID: {item.user_id}, Name: {item.user_givenname}{" "}
-                {item.user_familyname}
-              </Text>
-            </View>
-          )}
-        />
-        {/* //HERHHEHEHE */}
-        <Text style={styles.border}>Send friend request:</Text>
-        <TextInput
-          onChangeText={(userFriendID) => this.setState({ userFriendID })}
-          style={styles.box}
-          placeholder="Please enter a user ID"
-        />
-        <Button
-          onPress={() => this.sendFriendRequest()}
-          title="Friend request"
-        />
-        <Text style={styles.border}>Friend list:</Text>
-        <FlatList
-          data={this.state.friendArray}
-          renderItem={({ item }) => (
-            <View>
-              <Text>
-                ID: {item.user_id}, Name: {item.user_givenname}{" "}
-                {item.user_familyname}
-              </Text>
-            </View>
-          )}
-        />
+      <SafeAreaView>
+        <View>
+          <Text style={styles.border}>Search Spacebook users</Text>
+          <TextInput
+            style={styles.box}
+            placeholder="Search spacebook users here"
+            onChangeText={(textSearch) => this.setState({ textSearch })}
+          />
+          <Text>Friends or All</Text>
+          <TextInput
+            style={styles.box}
+            placeholder="Please 'friends'or 'all'"
+            onChangeText={(search_in) => this.setState({ search_in })}
+          />
+          <Text>Max number of searches</Text>
+          <TextInput
+            style={styles.box}
+            placeholder="Please enter number here"
+            onChangeText={(maxSearchLimit) => this.setState({ maxSearchLimit })}
+          />
+          <Text>number of offset item</Text>
+          <TextInput
+            style={styles.box}
+            placeholder="Please enter number here"
+            onChangeText={(offset) => this.setState({ offset })}
+          />
+          <Button onPress={() => this.getSearchUsers()} title="Find" />
+          <FlatList
+            data={this.state.arraySearch}
+            renderItem={({ item }) => (
+              <View>
+                <Text>
+                  ID: {item.user_id}, Name: {item.user_givenname}{" "}
+                  {item.user_familyname}
+                </Text>
+              </View>
+            )}
+          />
 
-        <Text style={styles.border}>Outstanding Friend requests:</Text>
-        <FlatList
-          data={this.state.arrayOfFriendRequests}
-          renderItem={({ item }) => (
-            <View>
-              <Text>
-                ID: {item.user_id}, Name: {item.first_name} {item.last_name}
-              </Text>
-              <Button
-                title="Accept Friend Request"
-                onPress={() => this.acceptFriendRequest(item.user_id)}
-              />
-            </View>
-          )}
-        />
-      </View>
+          <Text style={styles.border}>Send friend request</Text>
+          <TextInput
+            onChangeText={(userFriendID) => this.setState({ userFriendID })}
+            style={styles.box}
+            placeholder="Please enter a user ID"
+          />
+          <Button
+            onPress={() => this.sendFriendRequest()}
+            title="Friend request"
+          />
+          <Text style={styles.border}>Friend list:</Text>
+          <FlatList
+            data={this.state.friendArray}
+            renderItem={({ item }) => (
+              <View>
+                <Text>
+                  ID: {item.user_id}, Name: {item.user_givenname}{" "}
+                  {item.user_familyname}
+                </Text>
+              </View>
+            )}
+          />
+
+          <Text style={styles.border}> Your Friend requests list</Text>
+          <FlatList
+            data={this.state.arrayOfFriendRequests}
+            renderItem={({ item }) => (
+              <View>
+                <Text>
+                  ID: {item.user_id}, Name: {item.first_name} {item.last_name}
+                </Text>
+                <Button
+                  title="Accept Friend Request"
+                  onPress={() => this.acceptFriendRequest(item.user_id)}
+                />
+              </View>
+            )}
+          />
+        </View>
+      </SafeAreaView>
     );
   }
 }

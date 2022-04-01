@@ -42,6 +42,8 @@ class CreateUserAccount extends Component {
   //   console.log("button as been pressed");
   //   Alert.alert("button has been pressed");
   // };
+
+  //POST Add a new user
   addUser = () => {
     let to_send = {
       first_name: this.state.first_name,

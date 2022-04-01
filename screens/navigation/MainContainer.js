@@ -75,7 +75,6 @@ class MainContainer extends Component {
                   iconName = focused ? "person-add" : "person-add-outline";
                 }
 
-                // You can return any component that you like here!
                 return <Ionicons name={iconName} size={size} color={color} />;
               },
             })}

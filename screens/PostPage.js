@@ -1,4 +1,4 @@
-import "react-native-gesture-handler";
+import { ScrollView } from "react-native-gesture-handler";
 
 import React, { Component } from "react";
 import { StatusBar } from "expo-status-bar";
@@ -200,32 +200,24 @@ class VisiblePosts extends Component {
   render() {
     return (
       <SafeAreaView>
-        <Text>Testing Page: {this.state.Time}</Text>
+        <Button
+          title="Refresh Posts"
+          onPress={() => this.getSelectedtUserPosts()}
+        />
         <FlatList
           data={this.state.userPostText}
           renderItem={({ item }) => (
             <View>
-              <Text>
-                Name: {item.author.first_name} ,Post ID {item.post_id},
+              <Text style={styles.box}>
+                Name: {item.author.first_name} {item.author.last_name} ,Post ID{" "}
+                {item.post_id},
               </Text>
-              <Text>Text: {item.text}</Text>
-              <Text>
+              <Text style={styles.box}>Text: {item.text}</Text>
+              <Text style={styles.box}>
                 User Account ID: {item.author.user_id}, Likes: {item.numLikes}
               </Text>
-              <Text>Time Stamp:{item.timestamp}</Text>
-              <Button
-                title="Refresh Posts"
-                onPress={() =>
-                  this.getSelectedtUserPosts(item.author.user_id, item.post_id)
-                }
-              />
-              <Button
-                title="Delete Post Above"
-                color="red"
-                onPress={() =>
-                  this.deleteSelectedPost(item.author.user_id, item.post_id)
-                }
-              />
+              <Text style={styles.box}>Time Stamp:{item.timestamp}</Text>
+
               <TextInput
                 multiline={true}
                 numberOfLines={5}
@@ -244,6 +236,13 @@ class VisiblePosts extends Component {
                   this.updateAccountPost(item.post_id, this.state.postMessage)
                 }
               />
+              <Button
+                title="Delete Post Above"
+                color="red"
+                onPress={() =>
+                  this.deleteSelectedPost(item.author.user_id, item.post_id)
+                }
+              />
             </View>
           )}
         />
@@ -252,6 +251,11 @@ class VisiblePosts extends Component {
   }
 }
 const styles = StyleSheet.create({
+  box: {
+    borderWidth: 0.75,
+    padding: 5,
+    marginBottom: 2,
+  },
   multiline: {
     borderWidth: 0.5,
     borderColor: "green",

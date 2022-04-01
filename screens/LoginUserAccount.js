@@ -24,6 +24,7 @@ class UserLogInScreen extends Component {
     };
   }
 
+  // POST ALLOW A USER TO LOGIN
   userAccountLogin = async () => {
     console.log("login function called");
     return fetch("http://" + localHost + ":3333/api/1.0.0/login", {

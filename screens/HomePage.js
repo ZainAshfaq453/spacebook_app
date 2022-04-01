@@ -36,9 +36,7 @@ class HomePage extends Component {
       accountImage: "",
     };
   }
-  // componentDidMount() {
-  //   this.accountDetails();
-  // }
+
   getAccountID = async () => {
     const test = AsyncStorage.getItem("@id");
     console.log(test);
@@ -51,6 +49,8 @@ class HomePage extends Component {
       .then((data) => this.setState({ token: data }))
       .catch((error) => console.log(error));
   };
+
+  // GET a users profile pic
 
   getAccountImage = async () => {
     const accountID = await AsyncStorage.getItem("@id");
@@ -116,7 +116,7 @@ class HomePage extends Component {
         console.log(test);
       });
   };
-  // change account details endpoint
+  //PATCH change account details endpoint
   accountDetailsUpdate = async () => {
     const accountID = await AsyncStorage.getItem("@id");
     const token = await AsyncStorage.getItem("@session_token");
@@ -147,7 +147,7 @@ class HomePage extends Component {
         console.log(test);
       });
   };
-  // add a new post
+  // POST add a new post
   accountPost = async () => {
     const token = await AsyncStorage.getItem("@session_token");
     const accountID = await AsyncStorage.getItem("@id");
@@ -179,7 +179,7 @@ class HomePage extends Component {
       })
       .catch((error) => console.log(error));
   };
-  // logout endpint
+  // POST logout endpint
   userAccountLogout = async () => {
     const tok = AsyncStorage.getItem("@session_token");
     console.log(tok);
@@ -208,48 +208,53 @@ class HomePage extends Component {
   render() {
     return (
       <SafeAreaView>
-        <View style={styles.viewStyle}>
+        <View style={styles.container}>
           <Image
             style={{
               // resizeMode: "contain",
-              height: 96,
-              width: 96,
+              height: 150,
+              width: 150,
             }}
             source={{ uri: this.state.accountImage }}
           />
         </View>
-
-        <Text>Change User Account Details</Text>
-        <TextInput
-          placeholder="First Name"
-          onChangeText={(first_name) => this.setState({ first_name })}
-          value={this.state.first_name}
-        />
-        <TextInput
-          placeholder="Last Name"
-          onChangeText={(last_name) => this.setState({ last_name })}
-          value={this.state.last_name}
-        />
-        <TextInput
-          placeholder="E-Mail address"
-          onChangeText={(email) => this.setState({ email })}
-          value={this.state.email}
-        />
-        <TextInput
-          placeholder="Password"
-          onChangeText={(password) => this.setState({ password })}
-          value={this.state.password}
-          //secureTextEntry={true}
-        />
-        <Button
-          title="Change account details"
-          onPress={() => this.accountDetailsUpdate()}
-        />
+        <View style={styles.textBox}>
+          <Text>Change User Account Details</Text>
+          <TextInput
+            style={styles.box}
+            placeholder="First Name"
+            onChangeText={(first_name) => this.setState({ first_name })}
+            value={this.state.first_name}
+          />
+          <TextInput
+            style={styles.box}
+            placeholder="Last Name"
+            onChangeText={(last_name) => this.setState({ last_name })}
+            value={this.state.last_name}
+          />
+          <TextInput
+            style={styles.box}
+            placeholder="E-Mail address"
+            onChangeText={(email) => this.setState({ email })}
+            value={this.state.email}
+          />
+          <TextInput
+            style={styles.box}
+            placeholder="Password"
+            onChangeText={(password) => this.setState({ password })}
+            value={this.state.password}
+            //secureTextEntry={true}
+          />
+          <Button
+            title="Change account details"
+            onPress={() => this.accountDetailsUpdate()}
+          />
+        </View>
 
         <TextInput
           multiline={true}
           numberOfLines={5}
-          placeholder="Create a new post"
+          placeholder="Create a new spacebook post"
           style={styles.postBox}
           ref={(val) => {
             this.userPost = val;
@@ -257,14 +262,16 @@ class HomePage extends Component {
           onChangeText={(userPost) => this.setState({ userPost })}
           value={this.state.userPost}
         />
+
         <Button
           title="Submit your post"
+          color="green"
           onPress={() => this.accountPost(this.state.accountID)}
         />
 
-        <Text>Sign Ouaaat</Text>
         <Button
           title="logout"
+          color="red"
           onPress={() => {
             this.userAccountLogout();
           }}
@@ -275,10 +282,29 @@ class HomePage extends Component {
 }
 const styles = StyleSheet.create({
   postBox: {
-    padding: 10,
-    borderWidth: 3,
+    padding: 0.5,
+    borderWidth: 1,
     margin: 5,
     borderColor: "green",
+  },
+  box: { borderWidth: 0.75, padding: 5, marginBottom: 2 },
+  textBox: {
+    flex: 1,
+
+    // alignItems: "center",
+    justifyContent: "center",
+
+    padding: 15,
+    margin: 5,
+  },
+  container: {
+    flex: 1,
+
+    alignItems: "center",
+    justifyContent: "center",
+
+    padding: 15,
+    margin: 5,
   },
 });
 
